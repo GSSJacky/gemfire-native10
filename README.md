@@ -1,6 +1,6 @@
 # Gemfire-Native10
 
-# prerequisite
+# Prerequisite
 
 1.You need to download a gemfire 9.7.1 installer(zip version) and native client 10 from pivotal network, then put this zip file under `gemfireproductlist` folder.
 `pivotal-gemfire-9.7.1.tgz`
