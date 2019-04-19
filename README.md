@@ -265,3 +265,89 @@ OrderID: 6 Product Name: product z Quantity: 42
 OrderID: 2 Product Name: product y Quantity: 37
 OrderID: 4 Product Name: product z Quantity: 102
 ```
+
+# Copy a transation example into container
+# Compile and Run the transation example.
+
+```
+$docker cp main.cpp zealous_gates:/opt/pivotal/
+```
+
+```
+g++ \
+-D_REENTRANT \
+-O3 \
+-Wall \
+-m64 \
+-I$GEODE/include \
+transaction.cpp \
+-o transaction \
+-L$GEODE/lib \
+-Wl,-rpath,$GEODE/lib \
+-lpivotal-gemfire \
+-std=c++11 \
+-lstdc++ \
+-lgcc_s \
+-lc
+```
+
+```
+root@082a59848980:/opt/pivotal# ./transaction 
+[config 2019/04/19 07:41:28.829781 UTC 082a59848980:1659 139866341607360] Using Geode Native Client Product Directory: /opt/pivotal/pivotal-gemfire-native
+[config 2019/04/19 07:41:28.829827 UTC 082a59848980:1659 139866341607360] Product version: Pivotal GemFire Native 10.0.0-build.483 (64bit) 
+[config 2019/04/19 07:41:28.829835 UTC 082a59848980:1659 139866341607360] Source revision: 
+[config 2019/04/19 07:41:28.829851 UTC 082a59848980:1659 139866341607360] Source repository: 
+[config 2019/04/19 07:41:28.829869 UTC 082a59848980:1659 139866341607360] Running on: SystemName=Linux Machine=x86_64 Host=082a59848980 Release=4.9.125-linuxkit Version=#1 SMP Fri Sep 7 08:20:28 UTC 2018
+[config 2019/04/19 07:41:28.829884 UTC 082a59848980:1659 139866341607360] Current directory: /opt/pivotal
+[config 2019/04/19 07:41:28.829894 UTC 082a59848980:1659 139866341607360] Current value of PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/pivotal/current_java:/opt/pivotal/current_java/bin:/opt/pivotal/pivotal-gemfire-9.7.1/bin:/opt/pivotal/pivotal-gemfire-native/bin
+[config 2019/04/19 07:41:28.829964 UTC 082a59848980:1659 139866341607360] Current library path: 
+[config 2019/04/19 07:41:28.829992 UTC 082a59848980:1659 139866341607360] Geode Native Client System Properties:
+  archive-disk-space-limit = 0
+  archive-file-size-limit = 0
+  auto-ready-for-events = true
+  bucket-wait-timeout = 0ms
+  cache-xml-file = 
+  conflate-events = server
+  connect-timeout = 59000ms
+  connection-pool-size = 5
+  connect-wait-timeout = 0ms
+  enable-chunk-handler-thread = false
+  disable-shuffling-of-endpoints = false
+  durable-client-id = 
+  durable-timeout = 300s
+  enable-time-statistics = false
+  heap-lru-delta = 10
+  heap-lru-limit = 0
+  log-disk-space-limit = 0
+  log-file = 
+  log-file-size-limit = 0
+  log-level = config
+  max-fe-threads = 4
+  max-socket-buffer-size = 66560
+  notify-ack-interval = 1000ms
+  notify-dupcheck-life = 300000ms
+  on-client-disconnect-clear-pdxType-Ids = false
+  ping-interval = 10s
+  redundancy-monitor-interval = 10s
+  security-client-dhalgo = 
+  security-client-kspath = 
+  ssl-enabled = false
+  ssl-keystore = 
+  ssl-truststore = 
+  statistic-archive-file = statArchive.gfs
+  statistic-sampling-enabled = true
+  statistic-sample-rate = 1000ms
+  suspended-tx-timeout = 30s
+  tombstone-timeout = 480000ms
+[config 2019/04/19 07:41:28.830018 UTC 082a59848980:1659 139866341607360] Starting the Geode Native Client
+[info 2019/04/19 07:41:28.830168 UTC 082a59848980:1659 139866341607360] Using Native_ceaacfbfdd1659 as random data for ClientProxyMembershipID
+Created cache
+[info 2019/04/19 07:41:28.833244 UTC 082a59848980:1659 139866341607360] Creating region exampleRegion attached to pool pool
+[info 2019/04/19 07:41:28.833339 UTC 082a59848980:1659 139866234185472] ClientMetadataService started for pool pool
+Created region 'exampleRegion'
+[error 2019/04/19 07:41:28.834571 UTC 082a59848980:1659 139866234185472] Failed to add endpoint 082a59848980:40404 to pool pool
+[info 2019/04/19 07:41:28.845383 UTC 082a59848980:1659 139866234185472] Updated client meta data
+Committed transaction - exiting
+[info 2019/04/19 07:41:28.877275 UTC 082a59848980:1659 139866234185472] ClientMetadataService stopped for pool pool
+[config 2019/04/19 07:41:28.877944 UTC 082a59848980:1659 139866341607360] Stopped the Geode Native Client
+```
