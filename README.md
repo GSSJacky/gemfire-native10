@@ -2,13 +2,13 @@
 
 # Prerequisite
 
-1.You need to download a gemfire 9.7.1 installer(zip version) and native client 10 from pivotal network, then put this zip file under `gemfireproductlist` folder.
-`pivotal-gemfire-9.7.1.tgz`
-`pivotal-gemfire-native-10.0.0-build.483-Ubuntu16-64bit.tar.gz`
+1.You need to download a gemfire 9.7.4 installer(zip version) and native client 10 from pivotal network, then put this zip file under `gemfireproductlist` folder.
+`pivotal-gemfire-9.7.4.tgz`
+`pivotal-gemfire-native-10.0.3-build.2-Ubuntu16-64bit.tar.gz`
 
 Download URL:
-https://network.pivotal.io/products/pivotal-gemfire#/releases/318130
-https://network.pivotal.io/products/pivotal-gemfire#/releases/321210
+https://network.pivotal.io/products/pivotal-gemfire#/releases/445769
+https://network.pivotal.io/products/pivotal-gemfire#/releases/530741
 
 2.Tested with `Docker Community Edition for Mac 18.05.0-ce-mac66`
 https://docs.docker.com/docker-for-mac/install/
@@ -30,31 +30,6 @@ Step 2/37 : MAINTAINER GemfireGSS <xxxxxxxxx@gmail.com>
  ---> Running in a2e24babd433
 Removing intermediate container a2e24babd433
  ---> 8686ee79c7a9
-Step 3/37 : ENV JAVA_VERSION 8u201
- ---> Running in 81abc8f0499d
-Removing intermediate container 81abc8f0499d
- ---> f5d4fb5897c2
-Step 4/37 : ENV BUILD_VERSION b09
- ---> Running in b56bf7baa2d8
-Removing intermediate container b56bf7baa2d8
- ---> f8a4bb6edff3
-Step 5/37 : ENV JAVA_SUB_VERSION 201
- ---> Running in 03835336d054
-Removing intermediate container 03835336d054
- ---> 0aa68636379b
-Step 6/37 : ENV JDK_HASH_VALUE 42970487e3af4f5aa5bca3f542482c60
- ---> Running in ec230304b624
-Removing intermediate container ec230304b624
- ---> a79df2ea6a2e
-Step 7/37 : ENV GEMFIREVERSION 9.7.1
- ---> Running in 8a64fce41113
-Removing intermediate container 8a64fce41113
- ---> c072fcbc9c5c
-Step 8/37 : WORKDIR /opt/pivotal
- ---> Running in accbc2e4581f
-Removing intermediate container accbc2e4581f
- ---> e977d00ff5cc
-Step 9/37 : RUN apt-get update && apt-get install -y wget
 ..............
 -- Installing: /usr/local/share/cmake-3.14/include/cmCPluginAPI.h
 -- Installing: /usr/local/share/cmake-3.14/editors/vim/indent
@@ -88,13 +63,13 @@ root@174f8c79be82:/opt/pivotal# gfsh
    / _____/ ______/ ______/ /____/ /
   / /  __/ /___  /_____  / _____  / 
  / /__/ / ____/  _____/ / /    / /  
-/______/_/      /______/_/    /_/    9.7.1
+/______/_/      /______/_/    /_/    9.7.4
 
 Monitor and Manage Pivotal GemFire
 gfsh>start locator
 Starting a Geode Locator in /opt/pivotal/reach-uninterested-iota...
 .......
-Locator in /opt/pivotal/reach-uninterested-iota on 174f8c79be82[10334] as reach-uninterested-iota is currently online.Process ID: 53Uptime: 9 secondsGeode Version: 9.7.1Java Version: 1.8.0_201Log File: /opt/pivotal/reach-uninterested-iota/reach-uninterested-iota.logJVM Arguments: -Dgemfire.enable-cluster-configuration=true -Dgemfire.load-cluster-configuration-from-dir=false -Dgemfire.launcher.registerSignalHandlers=true -Djava.awt.headless=true -Dsun.rmi.dgc.server.gcInterval=9223372036854775806Class-Path: /opt/pivotal/pivotal-gemfire-9.7.1/lib/geode-core-9.7.1.jar:/opt/pivotal/pivotal-gemfire-9.7.1/lib/geode-dependencies.jar:/opt/pivotal/pivotal-gemfire-9.7.1/extensions/gemfire-greenplum-3.4.0.jar
+Locator in /opt/pivotal/reach-uninterested-iota on 174f8c79be82[10334] as reach-uninterested-iota is currently online.Process ID: 53Uptime: 9 secondsGeode Version: 9.7.4Java Version: 1.8.0_241Log File: /opt/pivotal/reach-uninterested-iota/reach-uninterested-iota.logJVM Arguments: -Dgemfire.enable-cluster-configuration=true -Dgemfire.load-cluster-configuration-from-dir=false -Dgemfire.launcher.registerSignalHandlers=true -Djava.awt.headless=true -Dsun.rmi.dgc.server.gcInterval=9223372036854775806Class-Path: /opt/pivotal/pivotal-gemfire-9.7.4/lib/geode-core-9.7.4.jar:/opt/pivotal/pivotal-gemfire-9.7.4/lib/geode-dependencies.jar:/opt/pivotal/pivotal-gemfire-9.7.4/extensions/gemfire-greenplum-3.4.0.jar
 
 Successfully connected to: JMX Manager [host=174f8c79be82, port=1099]
 
@@ -105,7 +80,7 @@ Cluster configuration service is up and running.
 gfsh>start server --locators=localhost[10334]
 Starting a Geode Server in /opt/pivotal/turn-helpful-beta...
 ......
-Server in /opt/pivotal/turn-helpful-beta on 174f8c79be82[40404] as turn-helpful-beta is currently online.Process ID: 144Uptime: 6 secondsGeode Version: 9.7.1Java Version: 1.8.0_201Log File: /opt/pivotal/turn-helpful-beta/turn-helpful-beta.logJVM Arguments: -Dgemfire.locators=localhost[10334] -Dgemfire.start-dev-rest-api=false -Dgemfire.use-cluster-configuration=true -XX:OnOutOfMemoryError=kill -KILL %p -Dgemfire.launcher.registerSignalHandlers=true -Djava.awt.headless=true -Dsun.rmi.dgc.server.gcInterval=9223372036854775806Class-Path: /opt/pivotal/pivotal-gemfire-9.7.1/lib/geode-core-9.7.1.jar:/opt/pivotal/pivotal-gemfire-9.7.1/lib/geode-dependencies.jar:/opt/pivotal/pivotal-gemfire-9.7.1/extensions/gemfire-greenplum-3.4.0.jar
+Server in /opt/pivotal/turn-helpful-beta on 174f8c79be82[40404] as turn-helpful-beta is currently online.Process ID: 144Uptime: 6 secondsGeode Version: 9.7.4Java Version: 1.8.0_241Log File: /opt/pivotal/turn-helpful-beta/turn-helpful-beta.logJVM Arguments: -Dgemfire.locators=localhost[10334] -Dgemfire.start-dev-rest-api=false -Dgemfire.use-cluster-configuration=true -XX:OnOutOfMemoryError=kill -KILL %p -Dgemfire.launcher.registerSignalHandlers=true -Djava.awt.headless=true -Dsun.rmi.dgc.server.gcInterval=9223372036854775806Class-Path: /opt/pivotal/pivotal-gemfire-9.7.4/lib/geode-core-9.7.4.jar:/opt/pivotal/pivotal-gemfire-9.7.4/lib/geode-dependencies.jar:/opt/pivotal/pivotal-gemfire-9.7.4/extensions/gemfire-greenplum-3.4.0.jar
 
 gfsh>list members
          Name           | Id

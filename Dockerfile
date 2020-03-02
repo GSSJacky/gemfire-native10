@@ -12,15 +12,16 @@ MAINTAINER GemfireGSS <xxxxxxxxx@gmail.com>
 # --》
 # "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/$JDK_HASH_VALUE/jdk-$JAVA_VERSION-linux-x64.tar.gz"
 ###################
-ENV JAVA_VERSION 8u201
-ENV BUILD_VERSION b09
-ENV JAVA_SUB_VERSION 201
-ENV JDK_HASH_VALUE 42970487e3af4f5aa5bca3f542482c60
+ENV JAVA_VERSION 8u241
+ENV BUILD_VERSION b07
+ENV JAVA_SUB_VERSION 241
+ENV JDK_HASH_VALUE 1f5b5a70bf22433b84d0e960903adac8
+
 
 ##################
 # Gemfire version
 ##################
-ENV GEMFIREVERSION 9.7.1
+ENV GEMFIREVERSION 9.7.4
 
 #Set workdir :
 WORKDIR /opt/pivotal
@@ -45,7 +46,7 @@ RUN apt-get install -y unzip zip
 
 
 #Add gemfire installation file
-ADD ./gemfireproductlist/pivotal-gemfire-9.7.1.tgz /opt/pivotal/
+ADD ./gemfireproductlist/pivotal-gemfire-$GEMFIREVERSION.tgz /opt/pivotal/
 
 #Set the username to root :
 USER root
@@ -81,9 +82,11 @@ EXPOSE  8080 10334 40404 40405 1099 7070
 
 
 ########################
-# native client part
+# native client part 
 ########################
-ENV NCVERSION 10.0.0
+#pivotal-gemfire-native-10.0.3-build.2-Ubuntu16-64bit.tar.gz
+ENV NCVERSION 10.0.3
+ENV NCVERBUILD 2
 ENV GEODE /opt/pivotal/pivotal-gemfire-native
 ENV PATH $PATH:$GEODE/bin
 #ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:$GEODE/lib
@@ -118,7 +121,8 @@ RUN cd /usr/local/src \
     && rm -rf cmake*
 
 # native client installation
-ADD ./gemfireproductlist/pivotal-gemfire-native-$NCVERSION-build.483-Ubuntu16-64bit.tar.gz /opt/pivotal/
+#pivotal-gemfire-native-10.0.3-build.2-Ubuntu16-64bit.tar.gz
+ADD ./gemfireproductlist/pivotal-gemfire-native-$NCVERSION-build.$NCVERBUILD-Ubuntu16-64bit.tar.gz /opt/pivotal/
 
 
 #RUN gunzip pivotal-gemfire-native-$NCVERSION-build.10-Linux-64bit.tar.gz
