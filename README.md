@@ -14,7 +14,7 @@ https://network.pivotal.io/products/pivotal-gemfire#/releases/530741
 https://docs.docker.com/docker-for-mac/install/
 
 # Building the container image
-The current Dockerfile is based on a ubuntu:16.04 image + JDK8u201 + Gemfire9.7.1 + NativeClient10.0.0
+The current Dockerfile is based on a ubuntu:16.04 image + JDK8u241 + Gemfire9.7.4 + NativeClient10.0.3
 
 Run the below command to compile the dockerfile to build the image:
 ```
